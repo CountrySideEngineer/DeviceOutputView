@@ -85,7 +85,33 @@ namespace DeviceOutputView.ViewModel
                     this.Clear();
                 }
                 this._IsConnected = value;
+                if (!value)
+                {
+                    this.Clear();
+                }
                 this.RaisePropertyChanged("IsConnected");
+            }
+        }
+        protected double _InSide;
+        public double InSide
+        {
+            get { return this._InSide; }
+            set
+            {
+                this._InSide = value;
+                this.RaisePropertyChanged("InSide");
+                this.Value1 = Convert.ToString(Convert.ToInt16(value));
+            }
+        }
+        protected double _OutSide;
+        public double OutSide
+        {
+            get { return this._OutSide; }
+            set
+            {
+                this._OutSide = value;
+                this.RaisePropertyChanged("OutSide");
+                this.Value2 = Convert.ToString(Convert.ToInt16(value));
             }
         }
         #endregion
@@ -109,6 +135,8 @@ namespace DeviceOutputView.ViewModel
             this.Value2 = "";
             this.Unit1 = "";
             this.Unit2 = "";
+            this.InSide = 0d;
+            this.OutSide = 0d;
         }
         #endregion
     }

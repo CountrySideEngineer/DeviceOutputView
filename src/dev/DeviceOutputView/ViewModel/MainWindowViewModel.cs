@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DeviceStateView.Command;
 
 namespace DeviceOutputView.ViewModel
 {
@@ -25,7 +26,7 @@ namespace DeviceOutputView.ViewModel
             set
             {
                 this._Value1 = value;
-                this.DevViewModel.Value1 = value;
+                this.DValue1 = Convert.ToDouble(value);
                 this.RaisePropertyChanged("Value1");
             }
         }
@@ -36,7 +37,7 @@ namespace DeviceOutputView.ViewModel
             set
             {
                 this._Value2 = value;
-                this.DevViewModel.Value2 = value;
+                this.DValue2 = Convert.ToDouble(value);
                 this.RaisePropertyChanged("Value2");
             }
         }
@@ -47,6 +48,7 @@ namespace DeviceOutputView.ViewModel
             set
             {
                 this._DValue1 = value;
+                this.DevViewModel.InSide = value;
                 this.RaisePropertyChanged("DValue1");
             }
         }
@@ -57,6 +59,7 @@ namespace DeviceOutputView.ViewModel
             set
             {
                 this._DValue2 = value;
+                this.DevViewModel.OutSide = value;
                 this.RaisePropertyChanged("DValue2");
             }
         }
@@ -82,6 +85,21 @@ namespace DeviceOutputView.ViewModel
                 this.RaisePropertyChanged("Unit2");
             }
         }
+        protected DelegateCommand _ConnectStateChangeCommand;
+        public DelegateCommand ConnectStateChangeCommand
+        {
+            get
+            {
+                if (null == this._ConnectStateChangeCommand)
+                {
+                    this._ConnectStateChangeCommand = new DelegateCommand(
+                        this.ConnectStateChangeCommandExecute,
+                        this.CanConnectStateChangeCommandExecute);
+                }
+                return this._ConnectStateChangeCommand;
+            }
+        }
+
         protected DeviceOutputViewModel _DevViewModel;
         public DeviceOutputViewModel DevViewModel
         {
@@ -99,6 +117,28 @@ namespace DeviceOutputView.ViewModel
                 this.RaisePropertyChanged("DevViewModel");
             }
         }
+
+        /// <summary>
+        /// Command body to change connect state.
+        /// </summary>
+        public void ConnectStateChangeCommandExecute()
+        {
+            if (this.DevViewModel.IsConnected)
+            {
+                this.DevViewModel.IsConnected = false;
+            }
+            else
+            {
+                this.DevViewModel.IsConnected = true;
+            }
+        }
+
+        /// <summary>
+        /// Returns whether ConnectStateChange command can execute or not.
+        /// </summary>
+        /// <returns>Whether the command can execute or not.</returns>
+        public bool CanConnectStateChangeCommandExecute() { return true; }
+
         #endregion
     }
 }
