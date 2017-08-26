@@ -59,9 +59,20 @@ namespace ProgressBar
         /// <param name="value"></param>
         private static Double CalcAngle(Double value)
         {
-            Double result = Math.Floor(value) * 3.6; // ROUND_ANGLE / 100
-            if(result <= 0) { return END_OFFSET; }
-            if(result >= 360) { return ROUND_ANGLE - END_OFFSET; }
+            Double result = 0d;
+            Double angle = Math.Floor(value) * 3.60;
+            if(angle <= 0)
+            {
+                result = END_OFFSET;
+            }
+            if(angle >= 360)
+            {
+                result = (ROUND_ANGLE - END_OFFSET);
+            }
+            else
+            {
+                result = angle;
+            }
             return result;
         }
 
