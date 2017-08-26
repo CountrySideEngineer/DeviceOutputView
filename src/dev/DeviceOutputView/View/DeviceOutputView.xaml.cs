@@ -181,7 +181,7 @@ namespace DeviceOutputView.View
             DeviceOutputView DstView = sender as DeviceOutputView;
             double NewValue = (double)e.NewValue;
             ProgressBar.CircleProgressBar.SetValue(ref DstView.ForegroundBar_InSide, NewValue, true);
-            ProgressBar.CircleProgressBar.SetValue(ref DstView.ForegroundBar_InSide, NewValue, true);
+            ProgressBar.CircleProgressBar.SetValue(ref DstView.BackgroundBar_InSide, NewValue, false);
         }
         [Browsable(true)]
         [Description("Event handler called when the property \"OutSide\" is changed.")]
@@ -190,7 +190,7 @@ namespace DeviceOutputView.View
             DeviceOutputView DstView = sender as DeviceOutputView;
             double NewValue = (double)e.NewValue;
             ProgressBar.CircleProgressBar.SetValue(ref DstView.ForegroundBar_OutSide, NewValue, true);
-            ProgressBar.CircleProgressBar.SetValue(ref DstView.ForegroundBar_OutSide, NewValue, true);
+            ProgressBar.CircleProgressBar.SetValue(ref DstView.BackgroundBar_OutSide, NewValue, false);
         }
         #endregion
     }

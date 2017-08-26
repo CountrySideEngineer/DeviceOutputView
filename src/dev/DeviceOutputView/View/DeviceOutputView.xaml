@@ -96,24 +96,24 @@
               Grid.Row="2" Grid.RowSpan="4"
               Width="80"
               Height="{Binding ElementName=ForegroundBar_OutSide, Path=Width}"
-              Stroke="Blue" StrokeThickness="5"/>
+              Stroke="#33BFDB" StrokeThickness="5"/>
         <Path x:Name="BackgroundBar_OutSide"
               Grid.Column="0" Grid.ColumnSpan="4"
               Grid.Row="2" Grid.RowSpan="4"
               Width="{Binding ElementName=ForegroundBar_OutSide, Path=Width}"
               Height="{Binding ElementName=ForegroundBar_OutSide, Path=Height}"
-              Stroke="Yellow" StrokeThickness="5"/>
+              Stroke="White" StrokeThickness="5"/>
         <Path x:Name="ForegroundBar_InSide"
               Grid.Column="0" Grid.ColumnSpan="4"
               Grid.Row="2" Grid.RowSpan="4"
               Width="70"
               Height="{Binding ElementName=ForegroundBar_InSide, Path=Width}"
-              Stroke="Red" StrokeThickness="5"/>
+              Stroke="#5EBABA" StrokeThickness="5"/>
         <Path x:Name="BackgroundBar_InSide"
               Grid.Column="0" Grid.ColumnSpan="4"
               Grid.Row="2" Grid.RowSpan="4"
               Width="{Binding ElementName=ForegroundBar_InSide, Path=Width}"
               Height="{Binding ElementName=ForegroundBar_InSide, Path=Height}"
-              Stroke="DarkBlue" StrokeThickness="5"/>
+              Stroke="White" StrokeThickness="5"/>
     </Grid>
 </UserControl>

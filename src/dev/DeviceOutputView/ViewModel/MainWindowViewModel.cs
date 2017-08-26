@@ -26,7 +26,6 @@ namespace DeviceOutputView.ViewModel
             set
             {
                 this._Value1 = value;
-                this.DValue1 = Convert.ToDouble(value);
                 this.RaisePropertyChanged("Value1");
             }
         }
@@ -37,7 +36,6 @@ namespace DeviceOutputView.ViewModel
             set
             {
                 this._Value2 = value;
-                this.DValue2 = Convert.ToDouble(value);
                 this.RaisePropertyChanged("Value2");
             }
         }
@@ -48,8 +46,9 @@ namespace DeviceOutputView.ViewModel
             set
             {
                 this._DValue1 = value;
-                this.DevViewModel.InSide = value;
+                this.DevViewModel.InSide = Convert.ToDouble(value * 10);
                 this.RaisePropertyChanged("DValue1");
+                this.Value1 = Convert.ToString(value);
             }
         }
         protected double _DValue2;
@@ -59,8 +58,9 @@ namespace DeviceOutputView.ViewModel
             set
             {
                 this._DValue2 = value;
-                this.DevViewModel.OutSide = value;
+                this.DevViewModel.OutSide = Convert.ToDouble(value * 10);
                 this.RaisePropertyChanged("DValue2");
+                this.Value2 = Convert.ToString(value);
             }
         }
         protected string _Unit1;
