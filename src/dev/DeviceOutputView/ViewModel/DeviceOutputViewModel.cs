@@ -139,8 +139,8 @@ namespace DeviceOutputView.ViewModel
         {
             this.Value1 = "";
             this.Value2 = "";
-            this.Unit1 = "";
-            this.Unit2 = "";
+            this.Unit1 = "-";
+            this.Unit2 = "-";
             this.InSide = 0d;
             this.OutSide = 0d;
         }
