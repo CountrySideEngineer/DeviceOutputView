@@ -13,7 +13,7 @@ namespace ProgressBar
         /// <summary>直角( 90°)</summary>
         private const Double RIGHT_ANGLE = 90d;
         /// <summary>端の値</summary>
-        private const Double END_OFFSET = 0.1;
+        private const Double END_OFFSET = 0.01;
 
         /// <summary>
         /// コントロールの描画設定
@@ -28,7 +28,9 @@ namespace ProgressBar
             Double angle = CalcAngle(value);
             var fig = new System.Windows.Media.PathFigure()
             {   // 開始点の設定
-                StartPoint = new Point(element.Width / 2, thick)
+                StartPoint = new Point(
+                    element.Width / 2,
+                    element.Height - thick)//下側から円を描く
             };
             
             Double radius = (element.Width / 2) - thick;    // 半径
@@ -40,7 +42,6 @@ namespace ProgressBar
             {
                 Point = new Point(endPoint.X + thick, endPoint.Y + thick),
                 Size = new Size(radius, radius),
-                // foregroundとbackgroundで設定変更
                 IsLargeArc = isFront ? isLargeArcFlg : !isLargeArcFlg,
                 SweepDirection = isFront ? SweepDirection.Clockwise
                                          : SweepDirection.Counterclockwise,
@@ -65,7 +66,7 @@ namespace ProgressBar
             {
                 result = END_OFFSET;
             }
-            if(angle >= 360)
+            else if(angle >= 360)
             {
                 result = (ROUND_ANGLE - END_OFFSET);
             }
@@ -83,7 +84,7 @@ namespace ProgressBar
         /// <param name="radius"></param>
         private static Point CalcEndPoint(Double angle, Double radius)
         {
-            Double radian = Math.PI * (angle - RIGHT_ANGLE) / 180;
+            Double radian = Math.PI * (angle + RIGHT_ANGLE) / 180;
             Double x = radius + radius * Math.Cos(radian);
             Double y = radius + radius * Math.Sin(radian);
             return new Point(x, y);
