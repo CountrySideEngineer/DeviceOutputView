@@ -18,6 +18,16 @@ namespace DeviceOutputView.ViewModel
             this.Unit2 = "-";
             this.DValue1 = 0d;
             this.DValue2 = 0d;
+
+            this.DevViewModel.DeviceName = "DeviceName";
+            this.DevViewModel.DevicePort = "Port1";
+
+            this.DevViewModel.InSide = this.DValue1;
+            this.DevViewModel.OutSide = this.DValue2;
+            this.DevViewModel.Value1 = this.Value1;
+            this.DevViewModel.Value2 = this.Value2;
+            this.DevViewModel.Unit1 = this.Unit1;
+            this.DevViewModel.Unit2 = this.Unit2;
         }
         protected string _Value1;
         public string Value1

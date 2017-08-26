@@ -19,6 +19,26 @@ namespace DeviceOutputView.ViewModel
         #endregion
 
         #region Property and field.
+        protected string _DeviceName;
+        public string DeviceName
+        {
+            get { return this._DeviceName; }
+            set
+            {
+                this._DeviceName = value;
+                this.RaisePropertyChanged("DeviceName");
+            }
+        }
+        protected string _DevicePort;
+        public string DevicePort
+        {
+            get { return this._DevicePort; }
+            set
+            {
+                this._DevicePort = value;
+                this.RaisePropertyChanged("DevicePort");
+            }
+        }
         protected string _Value1;
         public string Value1
         {
