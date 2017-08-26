@@ -74,6 +74,30 @@ namespace DeviceOutputView.View
             get { return (string)GetValue(Value2Property); }
             set { SetValue(Value2Property, value); }
         }
+        /// <summary>Property coresponding to InSide field.</summary>
+        public static DependencyProperty InSideProperty = 
+            DependencyProperty.Register(
+                "InSide",
+                typeof(double),
+                typeof(DeviceOutputView),
+                new PropertyMetadata(0d, InSideValueChanged));
+        public double InSide
+        {
+            get { return (double)GetValue(InSideProperty); }
+            set { SetValue(InSideProperty, value); }
+        }
+        /// <summary>Property coresponding to OutSide field.</summary>
+        public static DependencyProperty OutSideProperty =
+            DependencyProperty.Register(
+                "OutSide",
+                typeof(double),
+                typeof(DeviceOutputView),
+                new PropertyMetadata(0d, OutSideValueChanged));
+        public double OutSide
+        {
+            get { return (double)GetValue(OutSideProperty); }
+            set { SetValue(OutSideProperty, value); }
+        }
         /// <summary>Property coresponding to Unit2 field.</summary>
         public static readonly DependencyProperty Unit2Property =
             DependencyProperty.Register(
@@ -151,34 +175,23 @@ namespace DeviceOutputView.View
             }
         }
         [Browsable(true)]
-        [Description("Event handler called when the property \"Value1\" is changed.")]
-        private void Value1ChangedEventHandler(object sender, TextChangedEventArgs e)
+        [Description("Event handler called when the property \"InSide\" is changed.")]
+        public static void InSideValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            try
-            {
-                var dVar = Convert.ToDouble((e.Source as TextBox).Text);
-                ProgressBar.CircleProgressBar.SetValue(ref this.ForegroundBar_OutSide, dVar, true);
-                ProgressBar.CircleProgressBar.SetValue(ref this.BackgroundBar_OutSide, dVar, true);
-            }
-            catch (Exception ex) {
-                Console.WriteLine("{0}", ex.Message);
-            }
+            DeviceOutputView DstView = sender as DeviceOutputView;
+            double NewValue = (double)e.NewValue;
+            ProgressBar.CircleProgressBar.SetValue(ref DstView.ForegroundBar_InSide, NewValue, true);
+            ProgressBar.CircleProgressBar.SetValue(ref DstView.BackgroundBar_InSide, NewValue, false);
+        }
+        [Browsable(true)]
+        [Description("Event handler called when the property \"OutSide\" is changed.")]
+        public static void OutSideValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            DeviceOutputView DstView = sender as DeviceOutputView;
+            double NewValue = (double)e.NewValue;
+            ProgressBar.CircleProgressBar.SetValue(ref DstView.ForegroundBar_OutSide, NewValue, true);
+            ProgressBar.CircleProgressBar.SetValue(ref DstView.BackgroundBar_OutSide, NewValue, false);
         }
         #endregion
-        [Browsable(true)]
-        [Description("Event handler called when the property \"Value2\" is changed.")]
-        private void Value2ChangedEventHandler(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                var dVar = Convert.ToDouble((e.Source as TextBox).Text);
-                ProgressBar.CircleProgressBar.SetValue(ref this.ForegroundBar_InSide, dVar, true);
-                ProgressBar.CircleProgressBar.SetValue(ref this.BackgroundBar_InSide, dVar, true);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("{0}", ex.Message);
-            }
-        }
     }
 }
