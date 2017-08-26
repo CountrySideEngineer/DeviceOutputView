@@ -12,12 +12,12 @@ namespace DeviceOutputView.ViewModel
         #region Property and field.
         public MainWindowViewModel()
         {
-            this.DevViewModel.IsConnected = true;
-
             this.Value1 = "0";
             this.Value2 = "0";
             this.Unit1 = "-";
             this.Unit2 = "-";
+            this.DValue1 = 0d;
+            this.DValue2 = 0d;
         }
         protected string _Value1;
         public string Value1
@@ -126,10 +126,17 @@ namespace DeviceOutputView.ViewModel
             if (this.DevViewModel.IsConnected)
             {
                 this.DevViewModel.IsConnected = false;
+
+                this.DValue1 = 0d;
+                this.DValue2 = 0d;
             }
             else
             {
                 this.DevViewModel.IsConnected = true;
+                this.DevViewModel.Unit1 = this.Unit1;
+                this.DevViewModel.Unit2 = this.Unit2;
+                this.DevViewModel.InSide = this.DValue1;
+                this.DevViewModel.OutSide = this.DValue2;
             }
         }
 

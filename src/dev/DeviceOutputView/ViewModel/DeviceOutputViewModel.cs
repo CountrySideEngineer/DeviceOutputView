@@ -98,9 +98,12 @@ namespace DeviceOutputView.ViewModel
             get { return this._InSide; }
             set
             {
-                this._InSide = value;
-                this.RaisePropertyChanged("InSide");
-                this.Value1 = Convert.ToString(Convert.ToInt16(value));
+                if (this.IsConnected)
+                {
+                    this._InSide = value;
+                    this.RaisePropertyChanged("InSide");
+                    this.Value1 = Convert.ToString(Convert.ToInt16(value));
+                }
             }
         }
         protected double _OutSide;
@@ -109,9 +112,12 @@ namespace DeviceOutputView.ViewModel
             get { return this._OutSide; }
             set
             {
-                this._OutSide = value;
-                this.RaisePropertyChanged("OutSide");
-                this.Value2 = Convert.ToString(Convert.ToInt16(value));
+                if (this.IsConnected)
+                {
+                    this._OutSide = value;
+                    this.RaisePropertyChanged("OutSide");
+                    this.Value2 = Convert.ToString(Convert.ToInt16(value));
+                }
             }
         }
         #endregion
